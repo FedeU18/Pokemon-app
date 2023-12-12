@@ -7,6 +7,7 @@ import {
   IonCardTitle,
   IonHeader,
   IonTitle,
+  IonToolbar,
   setupIonicReact,
 } from "@ionic/react";
 
@@ -31,6 +32,7 @@ import "./theme/variables.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./components/Card";
+import Pagination from "./components/Pagination";
 
 setupIonicReact();
 
@@ -67,10 +69,14 @@ const App = () => {
   }, []);
   return (
     <IonApp>
-      {/* <IonHeader>
-        <IonTitle>Pokemon</IonTitle>
-      </IonHeader> */}
-      <Card pokemons={pokemons}></Card>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Pokemon</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <Pagination />
+      <Card pokemons={pokemons} />
+      <Pagination />
     </IonApp>
   );
 };
