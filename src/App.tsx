@@ -30,15 +30,17 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Card from "./components/Card";
 
 setupIonicReact();
 
 const App = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [offset, setOffset] = useState(0);
 
   const getPokemons = async () => {
     const url = "https://pokeapi.co/api/v2/pokemon";
-    const res = await axios.get(`${url}?limit=100000&offset=0`);
+    const res = await axios.get(`${url}?limit=10&offset=${offset}`);
     const data = res.data.results;
 
     const promises = data.map(async (pokemon) => {
@@ -68,18 +70,7 @@ const App = () => {
       {/* <IonHeader>
         <IonTitle>Pokemon</IonTitle>
       </IonHeader> */}
-      <IonCard>
-        <img alt={pokemons[0].name} src={pokemons[0].image} />
-        <IonCardHeader>
-          <IonCardTitle>{pokemons[0].name}</IonCardTitle>
-        </IonCardHeader>
-
-        <IonCardContent>
-          Height: {pokemons[0].height} <br></br>
-          weight: {pokemons[0].weight} lbs <br />
-          Experience: {pokemons[0].experience} <br />
-        </IonCardContent>
-      </IonCard>
+      <Card pokemons={pokemons}></Card>
     </IonApp>
   );
 };
