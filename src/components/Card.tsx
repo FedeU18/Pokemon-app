@@ -10,15 +10,15 @@ import { checkmark } from "ionicons/icons";
 
 const Card = ({ pokemon }) => {
   return (
-    <IonCard className={styles.card}>
+    <IonCard color={"light"} className={styles.card}>
       <img alt={pokemon.name} src={pokemon.image} />
       <IonCardHeader>
         <IonCardTitle>{pokemon.name}</IonCardTitle>
       </IonCardHeader>
 
       <IonCardContent>
-        Height: {pokemon.height} <br></br>
-        Weight: {pokemon.weight} lbs <br />
+        Height: {pokemon.height / 10} m <br></br>
+        Weight: {pokemon.weight / 10} kg <br />
         Experience: {pokemon.experience} <br />
         Abilites:{" "}
         {pokemon.abilities.map((ability) => (
