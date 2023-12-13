@@ -6,6 +6,8 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonHeader,
+  IonItem,
+  IonList,
   IonTitle,
   IonToolbar,
   setupIonicReact,
@@ -107,7 +109,13 @@ const App = () => {
         setOffset={setOffset}
         allPokemons={allPokemons}
       />
-      <Card pokemons={pokemons} />
+      <IonList>
+        {pokemons.map((pokemon) => (
+          <IonItem key={pokemon.name}>
+            <Card pokemon={pokemon} />
+          </IonItem>
+        ))}
+      </IonList>
       <Pagination
         offset={offset}
         setOffset={setOffset}

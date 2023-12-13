@@ -5,18 +5,18 @@ import {
   IonCardTitle,
 } from "@ionic/react";
 
-const Card = ({ pokemons }) => {
+const Card = ({ pokemon }) => {
   return (
     <IonCard>
-      <img alt={pokemons[0]?.name} src={pokemons[0]?.image} />
+      <img alt={pokemon.name} src={pokemon.image} />
       <IonCardHeader>
-        <IonCardTitle>{pokemons[0]?.name}</IonCardTitle>
+        <IonCardTitle>{pokemon.name}</IonCardTitle>
       </IonCardHeader>
 
       <IonCardContent>
-        Height: {pokemons[0]?.height} <br></br>
-        weight: {pokemons[0]?.weight} lbs <br />
-        Experience: {pokemons[0]?.experience} <br />
+        Height: {pokemon.height} <br></br>
+        weight: {pokemon.weight} lbs <br />
+        Experience: {pokemon.experience} <br />
       </IonCardContent>
     </IonCard>
   );
