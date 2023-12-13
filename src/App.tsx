@@ -38,7 +38,32 @@ setupIonicReact();
 
 const App = () => {
   const [pokemons, setPokemons] = useState([]);
+  const [allPokemons, setAllPokemons] = useState([]);
   const [offset, setOffset] = useState(0);
+
+  const getAllPokemons = async () => {
+    const url = "https://pokeapi.co/api/v2/pokemon";
+    const res = await axios.get(`${url}?limit=100000&offset=0`);
+    const data = res.data.results;
+
+    const promises = data.map(async (pokemon) => {
+      const res = await axios.get(pokemon.url);
+      return res.data;
+    });
+
+    const results = await Promise.all(promises);
+    const resumeData = results.map((p) => {
+      return {
+        name: p.name || "",
+        experience: p.base_experience || "",
+        height: p.height || "",
+        weight: p.weight || "",
+        abilities: p.abilities || "",
+        image: p.sprites.front_default || "",
+      };
+    });
+    setAllPokemons(resumeData);
+  };
 
   const getPokemons = async () => {
     const url = "https://pokeapi.co/api/v2/pokemon";
@@ -66,6 +91,9 @@ const App = () => {
 
   useEffect(() => {
     getPokemons();
+  }, [offset]);
+  useEffect(() => {
+    getAllPokemons();
   }, []);
   return (
     <IonApp>
@@ -74,9 +102,17 @@ const App = () => {
           <IonTitle>Pokemon</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <Pagination />
+      <Pagination
+        offset={offset}
+        setOffset={setOffset}
+        allPokemons={allPokemons}
+      />
       <Card pokemons={pokemons} />
-      <Pagination />
+      <Pagination
+        offset={offset}
+        setOffset={setOffset}
+        allPokemons={allPokemons}
+      />
     </IonApp>
   );
 };
