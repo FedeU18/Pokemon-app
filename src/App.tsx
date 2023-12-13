@@ -1,17 +1,15 @@
 import {
   IonApp,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
+  IonInfiniteScroll,
   IonHeader,
   IonItem,
   IonList,
   IonTitle,
   IonToolbar,
   setupIonicReact,
+  IonContent,
 } from "@ionic/react";
+import styles from "./styles/App.module.css";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -104,23 +102,27 @@ const App = () => {
           <IonTitle>Pokemon</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <Pagination
-        offset={offset}
-        setOffset={setOffset}
-        allPokemons={allPokemons}
-      />
-      <IonList>
-        {pokemons.map((pokemon) => (
-          <IonItem key={pokemon.name}>
-            <Card pokemon={pokemon} />
-          </IonItem>
-        ))}
-      </IonList>
-      <Pagination
-        offset={offset}
-        setOffset={setOffset}
-        allPokemons={allPokemons}
-      />
+      <IonContent>
+        <Pagination
+          offset={offset}
+          setOffset={setOffset}
+          allPokemons={allPokemons}
+        />
+        <IonInfiniteScroll>
+          <IonList className={styles.list}>
+            {pokemons.map((pokemon) => (
+              <IonItem key={pokemon.name}>
+                <Card pokemon={pokemon} />
+              </IonItem>
+            ))}
+          </IonList>
+        </IonInfiniteScroll>
+        <Pagination
+          offset={offset}
+          setOffset={setOffset}
+          allPokemons={allPokemons}
+        />
+      </IonContent>
     </IonApp>
   );
 };
