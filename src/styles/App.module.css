@@ -3,3 +3,19 @@
   flex-direction: column;
   align-items: center;
 }
+
+@media (min-width: 768px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+  }
+}
