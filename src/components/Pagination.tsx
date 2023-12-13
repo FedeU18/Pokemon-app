@@ -1,11 +1,4 @@
-import {
-  IonButton,
-  IonCol,
-  IonGrid,
-  IonIcon,
-  IonLabel,
-  IonRow,
-} from "@ionic/react";
+import { IonButton, IonCol, IonGrid, IonIcon, IonRow } from "@ionic/react";
 import { arrowForward, arrowBack } from "ionicons/icons";
 
 import styles from "../styles/Pagination.module.css";
